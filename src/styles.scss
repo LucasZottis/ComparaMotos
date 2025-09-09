@@ -1,23 +1,176 @@
 /* You can add global styles to this file, and also import other style files */
+.roboto-body-font {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.roboto-flex-test {
+    font-family: "Roboto Flex", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0,
+        "wdth" 100,
+        "GRAD" 0,
+        "XOPQ" 96,
+        "XTRA" 468,
+        "YOPQ" 79,
+        "YTAS" 750,
+        "YTDE" -203,
+        "YTFI" 738,
+        "YTLC" 514,
+        "YTUC" 712;
+}
+
+.montserrat-alternates-thin {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.montserrat-alternates-extralight {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.montserrat-alternates-light {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.montserrat-alternates-regular {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.montserrat-alternates-medium {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.montserrat-alternates-semibold {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.montserrat-alternates-bold {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.montserrat-alternates-extrabold {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.montserrat-alternates-black {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.montserrat-alternates-thin-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.montserrat-alternates-extralight-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.montserrat-alternates-light-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.montserrat-alternates-regular-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.montserrat-alternates-medium-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.montserrat-alternates-semibold-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.montserrat-alternates-bold-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.montserrat-alternates-extrabold-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.montserrat-alternates-black-italic {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-
-    main-layout {
-        width: 100%;
-        display: inherit;
-        justify-content: inherit;
-    }
+:root {
+    --primary: rgb(255, 96, 96);
+    --secondary: #FF6B35;
+    --bg-primary: #FFD166;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --white: #fff;
 }
 
-.page {
-    height: 100%;
-    padding: 0.75rem;
+body {
+    background-color: var(--bg-primary);
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+    padding: 7.5px;
+}
+
+.btn.primary {
+    background-color: var(--primary);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+}
+
+.btn.primary:hover {
+    background-color: rgb(249, 119, 119);
+    cursor: pointer;
+}
+
+.btn.primary:active {
+    background-color: rgb(230, 96, 96);
+    cursor: pointer;
 }

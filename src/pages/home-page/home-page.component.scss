@@ -1,31 +1,47 @@
-.compare-container {
-    background-color: #f8f8f8;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: space-between;
-    // margin: auto;
-    padding: 20px;
-    width: 100%;
-
-    .selector-container {
-        border-radius: 5px;
-        width: 100%;
-
-        select {
-            border-radius: 5px;
-            font-size: 14px;
-            padding: 10px 5px;
-            width: 100%;
-        }
-    }
-}
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: inherit;
-    // gap: 20px;
+    gap: 20px;
+
+    h1 {
+        font-size: 2.5rem;
+        font-family: 'Montserrat Alternates', sans-serif;
+    }
+
+    .compare-container {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: space-between;
+        width: 100%;
+
+        .selector-group {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 1rem;
+            width: inherit;
+        }
+
+        .versus {
+            background-color: rgb(255, 96, 96);
+            border: 3px solid white;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            color: rgb(255, 255, 255);
+            padding: 1rem;
+        }
+    }
+
+    .btn-compare {
+        min-width: 200px;
+        font-size: 1.2rem;
+    }
 }

@@ -1,0 +1,23 @@
+:host {
+    width: 100%;
+}
+
+.selector-container {
+    border-radius: 5px;
+    width: inherit;
+
+    select {
+        border: none;
+        border-width: 2px;
+        border-color: #f2f2f2;
+        border-radius: 2.5px;
+        box-shadow: var(--shadow);
+        font-size: 14px;
+        padding: 10px 5px;
+        width: inherit;
+    }
+}
+
+::picker(select) {
+    border: none;
+}

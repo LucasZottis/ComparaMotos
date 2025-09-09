@@ -1,22 +1,24 @@
 <div class="page">
     <div class="container">
-        <h1>Comparar Motos</h1>
+        <!-- <h1>Comparar Motos</h1> -->
+        <h2>Selecione as marcas, modelos e anos de duas motocicletas para comparar</h2>
         <div class="compare-container">
-            <div class="selector-container">
-                <select>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
+            <div class="selector-group">
+                <selector componentId="first-brand-selector" label="Marca" />
+                <selector componentId="first-model-selector" label="Modelo" />
+                <selector componentId="first-year-selector" label="Ano" />
             </div>
-
-            <div class="selector-container">
-                <select>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
+            <div class="versus">
+                <h3>VS</h3>
+            </div>
+            <div class="selector-group">
+                <selector componentId="second-brand-selector" label="Marca" />
+                <selector componentId="second-model-selector" label="Modelo" />
+                <selector componentId="second-year-selector" label="Ano" />
             </div>
         </div>
+        <button class="btn primary btn-compare">
+            Comparar
+        </button>
     </div>
 </div>
