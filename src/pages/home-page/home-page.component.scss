@@ -1,0 +1,31 @@
+.compare-container {
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    // margin: auto;
+    padding: 20px;
+    width: 100%;
+
+    .selector-container {
+        border-radius: 5px;
+        width: 100%;
+
+        select {
+            border-radius: 5px;
+            font-size: 14px;
+            padding: 10px 5px;
+            width: 100%;
+        }
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+    // gap: 20px;
+}
