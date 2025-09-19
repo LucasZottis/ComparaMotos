@@ -1,0 +1,36 @@
+﻿@page "/"
+@using Gerador.Site.Components
+
+<PageTitle>Home</PageTitle>
+
+@* <RadzenStack>
+    <InputFile />
+</RadzenStack>
+
+<RadzenStack>
+    <RadzenButton Text="Nova Marca" />
+</RadzenStack> *@
+
+
+<div>
+    <InputFile />
+</div>
+
+<div>
+    <button @onclick=@OnClickNewBrand>
+        Nova Marca
+    </button>
+</div>
+
+@code {
+    [Inject]
+    public DialogService DialogService { get; set; }
+
+    async Task OnClickNewBrand()
+    {
+        await DialogService.OpenAsync<BrandRegisterForm>( 
+            "Nova Marca", 
+            new Dictionary<string, object>() { }
+        );
+    }
+}

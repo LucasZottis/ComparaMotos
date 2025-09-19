@@ -1,0 +1,21 @@
+﻿@using Gerador.Site.Models
+<form>
+    <div class="form-field">
+        <label for="brandName">Marca</label>
+        <input type="text" id="brandName" placeholder="Informe o nome da marca" @bind-value=@_newBrand.Name>
+    </div>
+
+    <div class="form-field">
+        <label for="brandPath">Rota</label>
+        <input id="brandPath" placeholder="Informe a rota da marca" @bind-value=@_newBrand.Path>
+    </div>
+
+    <div style="margin-top: 0.5rem;" class="action-buttons">
+        <button type="submit" style="background-color: green; color: white;">Salvar</button>
+        <button type="reset" style="background-color: red; color: white;">Cancelar</button>
+    </div>
+</form>
+
+@code {
+    private NewBrandModel _newBrand = new NewBrandModel();
+}

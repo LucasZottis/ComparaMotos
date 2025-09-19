@@ -1,0 +1,27 @@
+﻿form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+    form .form-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    form .form-field label {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    form .action-buttons {
+        display: inherit;
+        gap: 0.3rem;
+        justify-content: center;
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+
+form button {
+    min-width: 100px;
+}
