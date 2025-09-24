@@ -1,13 +1,15 @@
 ﻿@using Gerador.Site.Models
-<form>
+@using Gerador.Site.Models.Brand
+
+<form @onsubmit=ClickSave @onreset=ClickCancel>
     <div class="form-field">
         <label for="brandName">Marca</label>
-        <input type="text" id="brandName" placeholder="Informe o nome da marca" @bind-value=@_newBrand.Name>
+        <input type="text" id="brandName" placeholder="Informe o nome da marca" @bind-value=@_brand.Name>
     </div>
 
     <div class="form-field">
         <label for="brandPath">Rota</label>
-        <input id="brandPath" placeholder="Informe a rota da marca" @bind-value=@_newBrand.Path>
+        <input id="brandPath" placeholder="Informe a rota da marca" @bind-value=@_brand.Path>
     </div>
 
     <div style="margin-top: 0.5rem;" class="action-buttons">
@@ -17,5 +19,21 @@
 </form>
 
 @code {
-    private NewBrandModel _newBrand = new NewBrandModel();
+    private BrandModel _brand = new();
+
+    [Parameter]
+    public EventCallback<BrandModel> OnClickSave { get; set; }
+
+    [Parameter]
+    public EventCallback OnClickCancel { get; set; }
+
+    private async Task ClickSave()
+    {
+        await OnClickSave.InvokeAsync( _brand );
+    }
+
+    private async Task ClickCancel()
+    {
+        await OnClickCancel.InvokeAsync();
+    }
 }

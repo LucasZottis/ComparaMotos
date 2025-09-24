@@ -1,3 +1,4 @@
+using Gerador.Site.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Radzen;
@@ -12,8 +13,12 @@ public class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
+        builder.Services.AddScoped<IndexedDB>();
+        builder.Services.AddScoped<BrandService>();
+
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
         builder.Services.AddRadzenComponents();
+
 
         await builder.Build().RunAsync();
     }

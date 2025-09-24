@@ -28,7 +28,7 @@
 
     async Task OnClickNewBrand()
     {
-        await DialogService.OpenAsync<BrandRegisterForm>( 
+        await DialogService.OpenAsync<NewBrandModal>( 
             "Nova Marca", 
             new Dictionary<string, object>() { }
         );

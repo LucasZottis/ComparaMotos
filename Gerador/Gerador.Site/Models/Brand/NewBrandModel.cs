@@ -1,4 +1,4 @@
-﻿namespace Gerador.Site.Models;
+﻿namespace Gerador.Site.Models.Brand;
 
 public class NewBrandModel
 {

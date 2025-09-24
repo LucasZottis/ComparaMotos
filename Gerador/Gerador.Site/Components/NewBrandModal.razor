@@ -1,0 +1,29 @@
+﻿@using Gerador.Site.Models.Brand
+@using Gerador.Site.Services
+
+<BrandRegisterForm OnClickSave="OnClickSave" OnClickCancel="OnClickCancel" />
+
+@code {
+    [Inject]
+    public DialogService DialogService { get; set; }
+
+    [Inject]
+    public BrandService Service { get; set; }
+
+    protected async Task OnClickSave( BrandModel brand )
+    {
+        var newBrand = new NewBrandModel
+        {
+            Name = brand.Name,
+            Path = brand.Path,
+        };
+
+        await Service.Add( newBrand );
+        DialogService.Close();
+    }
+
+    protected async Task OnClickCancel()
+    {
+        DialogService.Close();
+    }
+}

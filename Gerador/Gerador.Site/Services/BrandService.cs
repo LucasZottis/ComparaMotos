@@ -1,6 +1,17 @@
-﻿namespace Gerador.Site.Services;
+﻿using Gerador.Site.Models.Brand;
 
-public class BrandService
+namespace Gerador.Site.Services;
+
+public class BrandService : ServiceBase
 {
-    public async Task 
+    public async Task Add( NewBrandModel newBrand )
+    {
+        Context.Brands.Add(
+            new BrandModel { 
+                Guid = Guid.NewGuid(),
+                Name = newBrand.Name,
+                Path = newBrand.Path,
+            }
+        );
+    }
 }
