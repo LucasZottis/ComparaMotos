@@ -1,0 +1,17 @@
+﻿table {
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+    th, td {
+        border: 1px solid black;
+        padding: 0 0.15rem;
+    }
+
+    th {
+        text-align: center;
+    }
+
+    td.guid-column, td.guid-column {
+        width: fit-content;
+    }

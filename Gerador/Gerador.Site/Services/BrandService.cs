@@ -4,6 +4,9 @@ namespace Gerador.Site.Services;
 
 public class BrandService : ServiceBase
 {
+    public BrandService( IndexedDB indexedDB ) 
+        : base( indexedDB ) { }
+
     public async Task Add( NewBrandModel newBrand )
     {
         Context.Brands.Add(
@@ -13,5 +16,10 @@ public class BrandService : ServiceBase
                 Path = newBrand.Path,
             }
         );
+    }
+
+    public async Task<IEnumerable<BrandModel>> GetAll()
+    {
+        return Context.Brands;
     }
 }

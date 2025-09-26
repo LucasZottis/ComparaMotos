@@ -9,10 +9,10 @@
         flex-direction: column;
     }
 
-    form .form-field label {
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
+        form .form-field label {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
 
     form .action-buttons {
         display: inherit;
@@ -22,6 +22,6 @@
         width: 100%;
     }
 
-form button {
-    min-width: 100px;
-}
+    form button {
+        min-width: 100px;
+    }

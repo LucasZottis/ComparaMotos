@@ -1,0 +1,46 @@
+﻿@using Gerador.Site.Models.Brand
+@using Gerador.Site.Services
+
+<table>
+    <thead>
+        <tr>
+            <th class="guid-column">Guid</th>
+            <th>Marca</th>
+            <th>Rota</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ( var brand in _brands )
+        {
+            <tr>
+                <td class="guid-column">@brand.Guid</td>
+                <td>@brand.Name</td>
+                <td>@brand.Path</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private IEnumerable<BrandModel> _brands = [];
+
+    [Inject]
+    public BrandService BrandService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await Update();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async Task Update()
+    {
+        _brands = await BrandService.GetAll();
+        StateHasChanged();
+    }
+}

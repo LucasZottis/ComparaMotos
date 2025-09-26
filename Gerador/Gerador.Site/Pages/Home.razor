@@ -1,5 +1,8 @@
 ﻿@page "/"
 @using Gerador.Site.Components
+@using Gerador.Site.Components.Brand
+@using Gerador.Site.Models.Brand
+@using Gerador.Site.Services
 
 <PageTitle>Home</PageTitle>
 
@@ -12,9 +15,9 @@
 </RadzenStack> *@
 
 
-<div>
+@* <div>
     <InputFile />
-</div>
+</div> *@
 
 <div>
     <button @onclick=@OnClickNewBrand>
@@ -22,15 +25,21 @@
     </button>
 </div>
 
+<BrandList @ref=@_brandList />
+
 @code {
+    private BrandList _brandList;
+
     [Inject]
     public DialogService DialogService { get; set; }
 
-    async Task OnClickNewBrand()
+    protected async Task OnClickNewBrand()
     {
         await DialogService.OpenAsync<NewBrandModal>( 
             "Nova Marca", 
             new Dictionary<string, object>() { }
         );
+
+        await _brandList.Update();
     }
 }
