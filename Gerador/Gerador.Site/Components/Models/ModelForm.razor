@@ -1,0 +1,38 @@
+﻿@using Gerador.Site.Models.Models
+
+<form @onsubmit=ClickSave @onreset=ClickCancel>
+    <div class="form-field">
+        <label for="model-name">Modelo</label>
+        <input type="text" id="model-name" placeholder="Informe o nome do modelo" @bind-value=@_model.Name>
+    </div>
+
+    <div class="form-field">
+        <label for="model-year">Ano</label>
+        <input type="number" id="model-year" placeholder="Informe o ano do modelo" @bind-value=@_model.Year>
+    </div>
+
+    <div style="margin-top: 0.5rem;" class="action-buttons">
+        <button type="submit" style="background-color: green; color: white;">Salvar</button>
+        <button type="reset" style="background-color: red; color: white;">Cancelar</button>
+    </div>
+</form>
+
+@code {
+    private ModelModel _model = new();
+
+    [Parameter]
+    public EventCallback<ModelModel> OnClickSave { get; set; }
+
+    [Parameter]
+    public EventCallback OnClickCancel { get; set; }
+
+    private async Task ClickSave()
+    {
+        await OnClickSave.InvokeAsync( _model );
+    }
+
+    private async Task ClickCancel()
+    {
+        await OnClickCancel.InvokeAsync();
+    }
+}

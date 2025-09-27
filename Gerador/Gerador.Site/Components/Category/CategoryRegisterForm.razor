@@ -1,0 +1,37 @@
+﻿@using Gerador.Site.Models.Category
+<form @onsubmit=ClickSave @onreset=ClickCancel>
+    <div class="form-field">
+        <label for="category-name">Categoria</label>
+        <input type="text" id="category-name" placeholder="Informe o nome da categoria" @bind-value=@_category.Name>
+    </div>
+
+    <div class="form-field">
+        <label for="category-anchor">Âncora</label>
+        <input id="category-anchor" placeholder="Informe a âncora da categoria" @bind-value=@_category.Anchor>
+    </div>
+
+    <div style="margin-top: 0.5rem;" class="action-buttons">
+        <button type="submit" style="background-color: green; color: white;">Salvar</button>
+        <button type="reset" style="background-color: red; color: white;">Cancelar</button>
+    </div>
+</form>
+
+@code {
+    private CategoryModel _category = new();
+
+    [Parameter]
+    public EventCallback<CategoryModel> OnClickSave { get; set; }
+
+    [Parameter]
+    public EventCallback OnClickCancel { get; set; }
+
+    private async Task ClickSave()
+    {
+        await OnClickSave.InvokeAsync( _category );
+    }
+
+    private async Task ClickCancel()
+    {
+        await OnClickCancel.InvokeAsync();
+    }
+}

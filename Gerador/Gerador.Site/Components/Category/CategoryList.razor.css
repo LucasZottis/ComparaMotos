@@ -1,7 +1,6 @@
 ﻿table {
     width: 100%;
     margin: 0.5rem 0;
-    max-height: 500px;
 }
 
 th, td {
@@ -33,6 +32,6 @@ tbody tr:hover {
     background-color: gainsboro;
 }
 
-tbody tr.selected {
+tbody tr .selected {
     background-color: whitesmoke;
 }

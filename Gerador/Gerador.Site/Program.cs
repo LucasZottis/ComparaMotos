@@ -14,8 +14,8 @@ public class Program
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
         builder.Services.AddSingleton<IndexedDB>();
-        //builder.Services.AddSingleton<ServiceBase>();
         builder.Services.AddScoped<BrandService>();
+        builder.Services.AddScoped<CategoryService>();
 
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
         builder.Services.AddRadzenComponents();

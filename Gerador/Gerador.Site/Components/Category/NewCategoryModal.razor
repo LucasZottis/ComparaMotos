@@ -1,0 +1,30 @@
+﻿@using Gerador.Site.Models.Brand
+@using Gerador.Site.Models.Category
+@using Gerador.Site.Services
+
+<CategoryRegisterForm OnClickSave="OnClickSave" OnClickCancel="OnClickCancel" />
+
+@code {
+    [Inject]
+    public DialogService DialogService { get; set; }
+
+    [Inject]
+    public CategoryService Service { get; set; }
+
+    protected async Task OnClickSave( CategoryModel category )
+    {
+        var newCategory = new NewCategoryModel
+        {
+            Name = category.Name,
+            Anchor = category.Anchor,
+        };
+
+        await Service.Add( newCategory );
+        DialogService.Close();
+    }
+
+    protected async Task OnClickCancel()
+    {
+        DialogService.Close();
+    }
+}

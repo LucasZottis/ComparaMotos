@@ -25,13 +25,16 @@
     </button>
 </div>
 
-<BrandList @ref=@_brandList />
+<BrandList OnDoubleClick="OnSelectBrand" @ref=@_brandList />
 
 @code {
     private BrandList _brandList;
 
     [Inject]
     public DialogService DialogService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
 
     protected async Task OnClickNewBrand()
     {
@@ -41,5 +44,10 @@
         );
 
         await _brandList.Update();
+    }
+
+    protected async Task OnSelectBrand(Guid brandGuid)
+    {
+        NavigationManager.NavigateTo( $"/brand/{brandGuid}" );
     }
 }

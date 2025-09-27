@@ -1,0 +1,60 @@
+﻿@using Gerador.Site.Components.Models
+@using Gerador.Site.Models.Brand
+@using Gerador.Site.Services
+@page "/brand/{BrandGuid}"
+
+<h1>
+    @_brand.Name
+</h1>
+
+<ModelForm />
+<ModelsList Models="@_brand.Models" Style="width: 50%;" />
+
+@code {
+    private Guid _brandGuid = Guid.Empty;
+    private BrandModel _brand;
+
+    [Parameter]
+    public string BrandGuid { get; set; }
+
+    [Inject]
+    public NotificationService NotificationService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    public BrandService Service { get; set; }
+
+    private void SetBrandGuid()
+    {
+        if ( _brandGuid == Guid.Empty )
+        {
+            if ( !Guid.TryParse( BrandGuid, out _brandGuid ) )
+            {
+                NotificationService.Notify( NotificationSeverity.Error, "Error", "Invalid Brand ID." );
+                NavigationManager.NavigateTo( "/" );
+            }
+        }
+    }
+
+    private async Task GetBrandModels()
+    {
+        if ( _brandGuid == Guid.Empty )
+            return;
+
+        _brand = await Service.GetByGuid( _brandGuid );
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        SetBrandGuid();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        await GetBrandModels();
+    }
+}

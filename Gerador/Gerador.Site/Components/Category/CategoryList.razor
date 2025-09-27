@@ -1,0 +1,85 @@
+﻿@using Gerador.Site.Models.Brand
+@using Gerador.Site.Models.Category
+@using Gerador.Site.Services
+
+<table>
+    <thead>
+        <tr>
+            <th class="guid-column">Guid</th>
+            <th class="name-column">Nome</th>
+            <th>Âncora</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if ( _categories.Any() )
+        {
+            @foreach ( var category in _categories )
+            {
+                <tr style="@GetRowStyle(category)" @onclick=@(() => SelectBrand(category))>
+                    <td class="guid-column">@category.Guid</td>
+                    <td>@category.Name</td>
+                    <td>@category.Anchor</td>
+                </tr>
+            }
+        }
+
+        else
+        {
+            <tr>
+                <td colspan="3" class="no-info-column">
+                    @if ( _loading )
+                    {
+                        @("Carregando")
+                    }
+                    else
+                    {
+                        @("Não há categorias para exibir")
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private IEnumerable<CategoryModel> _categories = [];
+    private bool _loading;
+    private CategoryModel _selected = new();
+
+    [Parameter]
+    public EventCallback<Guid> OnSelect { get; set; }
+
+    [Inject]
+    public CategoryService Service { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await Update();
+    }
+
+    protected string GetRowStyle( CategoryModel brand )
+    {
+        if ( _selected.Guid == brand.Guid )
+            return "selected";
+
+        return "";
+    }
+
+    protected async Task SelectBrand( CategoryModel brand )
+    {
+        _selected = brand;
+
+        if ( OnSelect.HasDelegate )
+            await OnSelect.InvokeAsync( brand.Guid );
+    }
+
+    public async Task Update()
+    {
+        _loading = true;
+        _categories = await Service.GetAll();
+        StateHasChanged();
+        _loading = false;
+    }
+}

@@ -1,0 +1,30 @@
+﻿@using Gerador.Site.Components.Category
+@using Gerador.Site.Models.Category
+
+@page "/categories"
+
+<div>
+    <button @onclick=@OnClickNew>
+        Nova Categoria
+    </button>
+</div>
+
+<CategoryList @ref=@_categoriesList />
+
+@code {
+    private CategoryList _categoriesList;
+
+    [Inject]
+    public DialogService DialogService { get; set; }
+
+    protected async Task OnClickNew()
+    {
+        await DialogService.OpenAsync<NewCategoryModal>(
+            "Nova Categoria",
+            new Dictionary<string, object>() { }
+        );
+
+        await _categoriesList.Update();
+        // StateHasChanged();
+    }
+}

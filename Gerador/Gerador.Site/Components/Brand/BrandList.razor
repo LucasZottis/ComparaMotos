@@ -5,17 +5,36 @@
     <thead>
         <tr>
             <th class="guid-column">Guid</th>
-            <th>Marca</th>
+            <th class="name-column">Marca</th>
             <th>Rota</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ( var brand in _brands )
+        @if ( _brands.Any() )
+        {
+            @foreach ( var brand in _brands )
+            {
+                <tr class="@GetRowStyle(brand)" @onclick="@(() => SelectBrand(brand))" @ondblclick=DoubleClick>
+                    <td class="guid-column">@brand.Guid</td>
+                    <td>@brand.Name</td>
+                    <td>@brand.Path</td>
+                </tr>
+            }
+        }
+
+        else
         {
             <tr>
-                <td class="guid-column">@brand.Guid</td>
-                <td>@brand.Name</td>
-                <td>@brand.Path</td>
+                <td colspan="3" class="no-info-column">
+                    @if ( _loading )
+                    {
+                        @("Carregando")
+                    }
+                    else
+                    {
+                        @("Não há marcas para exibir")
+                    }
+                </td>
             </tr>
         }
     </tbody>
@@ -23,9 +42,15 @@
 
 @code {
     private IEnumerable<BrandModel> _brands = [];
+    private bool _loading;
+    private BrandModel _selectedBrand = new();
+
+    [Parameter]
+    public EventCallback<Guid> OnDoubleClick { get; set; }
 
     [Inject]
     public BrandService BrandService { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -33,14 +58,35 @@
         await Update();
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync( bool firstRender )
     {
-        await base.OnAfterRenderAsync(firstRender);
+        await base.OnAfterRenderAsync( firstRender );
+    }
+
+    protected string GetRowStyle( BrandModel brand )
+    {
+        if ( _selectedBrand.Guid == brand.Guid )
+            return "selected";
+
+        return "";
+    }
+
+    protected async Task SelectBrand( BrandModel brand )
+    {
+        _selectedBrand = brand;
+    }
+
+    protected async Task DoubleClick()
+    {
+        if ( OnDoubleClick.HasDelegate )
+            await OnDoubleClick.InvokeAsync( _selectedBrand.Guid );
     }
 
     public async Task Update()
     {
+        _loading = true;
         _brands = await BrandService.GetAll();
         StateHasChanged();
+        _loading = false;
     }
 }

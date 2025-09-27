@@ -18,6 +18,16 @@ public class BrandService : ServiceBase
         );
     }
 
+    public async Task<BrandModel> GetByGuid(Guid guid)
+    {
+        var brand = Context.Brands.FirstOrDefault( b => b.Guid == guid );
+
+        if ( brand == null )
+            throw new Exception( "Não há marca com esse guid" );
+
+        return await Task.FromResult( brand );
+    }
+
     public async Task<IEnumerable<BrandModel>> GetAll()
     {
         return Context.Brands;

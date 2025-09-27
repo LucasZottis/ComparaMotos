@@ -1,0 +1,68 @@
+﻿@using Gerador.Site.Models.Models
+
+<table style="@Style">
+    <thead>
+        <tr>
+            <th class="guid-column">Guid</th>
+            <th class="name-column">Marca</th>
+            <th>Rota</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if ( Models.Any() )
+        {
+            @foreach ( var brand in Models )
+            {
+                <tr class="@GetRowStyle(brand)" @onclick="@(() => OnClickRow(brand))">
+                    <td class="guid-column">@brand.Guid</td>
+                    <td>@brand.Name</td>
+                    <td>@brand.Year</td>
+                </tr>
+            }
+        }
+
+        else
+        {
+            <tr>
+                <td colspan="3" class="no-info-column">
+                    @if ( _loading )
+                    {
+                        @("Carregando")
+                    }
+                    else
+                    {
+                        @("Não há marcas para exibir")
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private bool _loading;
+    private ModelModel _selected = new();
+
+    [Parameter]
+    public string Style { get; set; }
+
+    [Parameter]
+    public IEnumerable<ModelModel> Models { get; set; } = [];
+
+    [Parameter]
+    public EventCallback<ModelModel> OnSelect { get; set; }
+
+    protected string GetRowStyle( ModelModel brand )
+    {
+        if ( _selected.Guid == brand.Guid )
+            return "selected";
+
+        return "";
+    }
+
+    public async Task OnClickRow( ModelModel model )
+    {
+        if ( OnSelect.HasDelegate )
+            await OnSelect.InvokeAsync( model );
+    }
+}
